@@ -2,6 +2,8 @@ import numpy as np
 import itertools as itr
 import pickle
 
+from os.path import exists
+
 def main():
     working_eight_by_sixteens = get_working_8x16s()
             
@@ -72,8 +74,14 @@ def numpy_matrix_pretty(numpy_matrix):
 
 
 def recover_working_eight_by_sixteens():
-    with open("output.pickle", "rb") as f:
-        return pickle.load(f)
+    if exists("output.pickle"):
+        with open("output.pickle", "rb") as f:
+            return pickle.load(f)
+    else:
+        working_eight_by_sixteens = get_working_8x16s()
+        with open("output.pickle", "wb") as f:
+            pickle.dump(working_eight_by_sixteens, f)
+        return working_eight_by_sixteens
 
 
 if __name__ == "__main__":
