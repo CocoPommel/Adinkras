@@ -3,6 +3,17 @@ import itertools as itr
 import pickle
 
 def main():
+    working_eight_by_sixteens = get_working_8x16s()
+            
+    with open("output.txt", "w+") as f:
+        for working_eight_by_sixteen in working_eight_by_sixteens:
+            f.write(numpy_matrix_pretty(working_eight_by_sixteen) + "\n\n")
+            
+    with open("output.pickle", "wb") as f:
+        pickle.dump(working_eight_by_sixteens, f)
+              
+        
+def get_working_8x16s():
     permutation_matrices = generate_permutation_matrices()
     combinations_of_permutation_matrices = itr.combinations(permutation_matrices, 4) # all size 4 combinations of permutation matrices
     
@@ -11,15 +22,10 @@ def main():
         if add_up_to_one(combination):
             negated_and_transposed_combination = [np.negative(np.transpose(matrix)) for matrix in combination] # transpose and negate each matrix
             working_eight_by_sixteens.extend(permute_around_bottom_4x16(negated_and_transposed_combination))
+         
+    return working_eight_by_sixteens
+        
             
-    with open("output.txt", "w+") as f:
-        for working_eight_by_sixteen in working_eight_by_sixteens:
-            f.write(numpy_matrix_pretty(working_eight_by_sixteen) + "\n\n")
-            
-    with open("output.pickle", "wb") as f:
-        pickle.dump(working_eight_by_sixteens, f)
-                
-                
 def generate_permutation_matrices():
     permutation_matrices = []
     positions_of_ones = [0, 1, 2, 3]
