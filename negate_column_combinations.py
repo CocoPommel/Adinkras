@@ -43,12 +43,17 @@ def numpy_matrix_pretty(numpy_matrix):
     return ret
 
 
-def main():
-    matrices_to_negate_column_combinations_from = recover_working_eight_by_sixteens() # or enter another list of numpy matrices here
+def generate_negated_column_combinations(matrices_to_negate_column_combinations_from):
     matrices_with_all_column_combinations_negated = []
     
     for matrix in matrices_to_negate_column_combinations_from:
         matrices_with_all_column_combinations_negated += combinations_of_negated_columns_of_matrix(matrix) # merge lists instead of making a list of lists
+
+    return matrices_with_all_column_combinations_negated
+
+
+def main():
+    matrices_with_all_column_combinations_negated = generate_negated_column_combinations(recover_working_eight_by_sixteens()) # or enter another list of numpy matrices here
         
     with open("negated_combinations.pickle", "wb") as f:
         pickle.dump(matrices_with_all_column_combinations_negated, f)
