@@ -4,7 +4,7 @@ import itertools as it
 import numpy as np
 import pickle
 
-INNER_COLUMNS_TO_NEGATE = [0, 1, 2, 3, -1, -1, -1]
+INNER_COLUMNS_TO_NEGATE = [0, 1, 2, 3, -1, -1, -1, -1]
 
 
 
