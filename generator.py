@@ -7,11 +7,11 @@ from os.path import exists
 def main():
     working_eight_by_sixteens = get_working_8x16s()
             
-    with open("output.txt", "w+") as f:
+    with open("working_8x16s.txt", "w+") as f:
         for working_eight_by_sixteen in working_eight_by_sixteens:
             f.write(numpy_matrix_pretty(working_eight_by_sixteen) + "\n\n")
             
-    with open("output.pickle", "wb") as f:
+    with open("working_8x16s.pickle", "wb") as f:
         pickle.dump(working_eight_by_sixteens, f)
               
         
@@ -74,12 +74,12 @@ def numpy_matrix_pretty(numpy_matrix):
 
 
 def recover_working_eight_by_sixteens():
-    if exists("output.pickle"):
-        with open("output.pickle", "rb") as f:
+    if exists("working_8x16s.pickle"):
+        with open("working_8x16s.pickle", "rb") as f:
             return pickle.load(f)
     else:
         working_eight_by_sixteens = get_working_8x16s()
-        with open("output.pickle", "wb") as f:
+        with open("working_8x16s.pickle", "wb") as f:
             pickle.dump(working_eight_by_sixteens, f)
         return working_eight_by_sixteens
 
