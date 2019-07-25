@@ -21,7 +21,7 @@ def combinations_of_negated_columns_of_matrix(matrix):
         for inner_column_to_negate in [i for i in set_of_columns_to_negate if i != -1]:
             for i in range(4):
                 big_matrix_column_to_negate = 4*i + inner_column_to_negate # negate the inner column in the [i]th matrix column
-                deep_matrix_copy[:,big_matrix_column_to_negate] = 0 # set all row entries in the [column_to_negate]th column to 0
+                deep_matrix_copy[:,big_matrix_column_to_negate] *= -1 # multiply all entries in the [column_to_negate]th column by -1
             
         combinations.append(deep_matrix_copy)
         combinations_already_negated.append(actual_set_of_columns_to_negate)
